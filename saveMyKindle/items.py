@@ -8,5 +8,7 @@ import scrapy
 
 class SavemykindleItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    chapterName = scrapy.Field()
+    chapterUrl = scrapy.Field()
+    chapterContent = scrapy.Field()
     pass
