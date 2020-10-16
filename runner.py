@@ -6,14 +6,15 @@ from scrapy.cmdline import execute
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-os.remove("book.csv")
-os.remove("book.txt")
+if os.path.exists("book.csv"):
+    os.remove("book.csv")
 
 try:
     execute(
         [
             'scrapy',
             'crawl',
+            '--nolog',
             'sqsxs',
             '-o',
             'book.csv',

@@ -10,6 +10,8 @@ class SqsxsSpider(scrapy.Spider):
     def parse(self, response):
         for sel in response.xpath('//dd'):
             item = SavemykindleItem()
+            if len(sel.xpath('a/text()').extract()) == 0:
+                continue
             item["chapterName"] = sel.xpath('a/text()').extract()[0]
             item["chapterUrl"] = "".join(self.start_urls + sel.xpath('a/@href').extract())
             yield scrapy.Request(item['chapterUrl'], meta={'item': item}, callback=self.content_parse)
